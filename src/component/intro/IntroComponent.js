@@ -1,21 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const IntroComponent = ({ onReady }) => {
-  const [isReady, setIsReady] = useState(false);
-
-  const handleYes = () => {
-    setIsReady(true);
-    onReady();
-  };
-
-  if (isReady) {
-    return null;
-  }
-
   return (
     <div>
-      <h2>هل أنت مستعد لنطق الشهادة؟</h2>
-      <button onClick={handleYes}>نعم</button>
+      <h1>مرحباً بك في تطبيق تلقين الشهادة</h1>
+      <button onClick={onReady}>ابدأ</button>
     </div>
   );
 };

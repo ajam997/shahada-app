@@ -3,16 +3,22 @@ import React, { useState } from 'react';
 const LanguageSelection = ({ onLanguageSelected }) => {
   const [language, setLanguage] = useState('');
 
-  const handleSelect = (event) => {
-    setLanguage(event.target.value);
-    onLanguageSelected(event.target.value);
+  const handleSelectLanguage = () => {
+    if (language) {
+      onLanguageSelected(language);
+    }
   };
 
   return (
     <div>
-      <h2>ما هي لغتك الأم؟</h2>
-      <input type="text" value={language} onChange={handleSelect} placeholder="اكتب لغتك الأم" />
-      {language && <p>لغتك الأم هي: {language}</p>}
+      <h2>اختر لغتك الأم</h2>
+      <input
+        type="text"
+        placeholder="اكتب لغتك"
+        value={language}
+        onChange={(e) => setLanguage(e.target.value)}
+      />
+      <button onClick={handleSelectLanguage}>تأكيد</button>
     </div>
   );
 };
