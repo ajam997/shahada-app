@@ -1,6 +1,5 @@
-export const speak = (text, lang) => {
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = lang;
-    window.speechSynthesis.speak(utterance);
-  };
-  
+export const speak = (text, lang = 'en-US') => {
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = lang;
+  window.speechSynthesis.speak(utterance);
+};
