@@ -31,8 +31,6 @@
     display: flex;
     gap: 40px;
     font-size: 20px;
-    font-weight: 700;
-
 }
 .links > p{
     font-size: 14px;

@@ -6,34 +6,47 @@ const useSpeechRecognition = () => {
   const [recognition, setRecognition] = useState(null);
 
   useEffect(() => {
-    // تحقق من دعم المتصفح لـ SpeechRecognition أو webkitSpeechRecognition
-    const SpeechRecognition =
-      window.SpeechRecognition || window.webkitSpeechRecognition;
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
     if (SpeechRecognition) {
       const recog = new SpeechRecognition();
-      recog.continuous = true; // الاستماع المستمر
-      recog.interimResults = true; // إظهار النتائج المؤقتة
+      recog.continuous = false; 
+      recog.interimResults = true; 
 
       recog.onresult = (event) => {
-        const transcriptArray = Array.from(event.results)
-          .map((result) => result[0].transcript)
+        const finalTranscript = Array.from(event.results)
+          .filter(result => result.isFinal)
+          .map(result => result[0].transcript)
           .join('');
-        setTranscript(transcriptArray);
+        setTranscript(finalTranscript); 
       };
 
       recog.onstart = () => {
-        setIsListening(true);
+        setIsListening(true); 
       };
 
       recog.onend = () => {
+        setIsListening(false); 
+      };
+
+      recog.onerror = (event) => {
+        console.error('Speech recognition error:', event.error);
         setIsListening(false);
       };
 
       setRecognition(recog);
     } else {
-      console.error('Speech Recognition API غير مدعومة في هذا المتصفح.');
+      console.error('Speech Recognition API is not supported in this browser.');
     }
+
+    return () => {
+      if (recognition) {
+        recognition.onresult = null;
+        recognition.onstart = null;
+        recognition.onend = null;
+        recognition.onerror = null;
+      }
+    };
   }, []);
 
   const startListening = () => {
