@@ -5,7 +5,8 @@ import ShahadaTeaching from './component/ShahadaTeaching/ShahadaTeaching';
 import ArabicTeaching from './component/ArabicTeaching/ArabicTeaching';
 import useSpeechRecognition from './hooks/useSpeechRecognition/useSpeechRecognition';
 import AudioVisualizer from './component/AudioVisualizer/AudioVisualizer';
-
+import Header from './layout/header/header';
+import { ThemeContextProvider } from './context/theme/ThemeContext';
 function App() {
   const [ready, setReady] = useState(false);
   const [language, setLanguage] = useState('');
@@ -17,20 +18,26 @@ function App() {
   const handleTeachingComplete = () => setTeachingComplete(true);
 
   return (
-    <div>
-      {!ready && <IntroComponent onReady={handleReady} />}
-      {ready && !language && <LanguageSelection onLanguageSelected={handleLanguageSelected} />}
-      {language && !teachingComplete && (
-        <ShahadaTeaching
-          language={language}
-          onComplete={handleTeachingComplete}
-          transcript={transcript}
-          onStartListening={startListening}
-          onStopListening={stopListening}
-        />
-      )}
-    
-    </div>
+  <>
+      <ThemeContextProvider>
+        <Header />
+        <div className='main'>
+          {!ready && <IntroComponent onReady={handleReady} />}
+          {ready && !language && <LanguageSelection onLanguageSelected={handleLanguageSelected} />}
+          {language && !teachingComplete && (
+            <ShahadaTeaching
+              language={language}
+              onComplete={handleTeachingComplete}
+              transcript={transcript}
+              onStartListening={startListening}
+              onStopListening={stopListening}
+            />
+          )}
+        
+        </div>
+      </ThemeContextProvider>
+
+  </>
   );
 }
 

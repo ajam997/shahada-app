@@ -11,6 +11,7 @@ const LanguageSelection = ({ onLanguageSelected }) => {
 
   return (
     <div>
+      <h2>SHAHADA</h2>
       <h2>اختر لغتك الأم</h2>
       <input
         type="text"
