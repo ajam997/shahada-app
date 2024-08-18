@@ -7,18 +7,24 @@ import useSpeechRecognition from './hooks/useSpeechRecognition/useSpeechRecognit
 import AudioVisualizer from './component/AudioVisualizer/AudioVisualizer';
 import Header from './layout/header/header';
 import { ThemeContextProvider } from './context/theme/ThemeContext';
+
 function App() {
   const [ready, setReady] = useState(false);
   const [language, setLanguage] = useState('');
   const [teachingComplete, setTeachingComplete] = useState(false);
   const { transcript, startListening, stopListening } = useSpeechRecognition();
 
+  // تعيين حالة "جاهز" عندما ينقر المستخدم على "ابدأ"
   const handleReady = () => setReady(true);
+
+  // تعيين اللغة التي تم اختيارها
   const handleLanguageSelected = (lang) => setLanguage(lang);
+
+  // تعيين حالة "التدريس اكتمل"
   const handleTeachingComplete = () => setTeachingComplete(true);
 
   return (
-  <>
+    <>
       <ThemeContextProvider>
         <Header />
         <div className='main'>
@@ -33,11 +39,10 @@ function App() {
               onStopListening={stopListening}
             />
           )}
-        
+          {teachingComplete && <ArabicTeaching />}
         </div>
       </ThemeContextProvider>
-
-  </>
+    </>
   );
 }
 

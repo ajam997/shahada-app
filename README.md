@@ -68,3 +68,46 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# Shahada Teaching Application
+
+## Overview
+
+The Shahada Teaching Application is an interactive web app designed to help users learn and practice reciting the Shahada in both their native language and Latinized Arabic. The app combines speech recognition and synthesis technologies to provide a dynamic and educational experience.
+
+## Features
+
+- **Multi-Language Support**: Currently supports English and French.
+- **Speech Recognition**: Uses the Web Speech API to transcribe and evaluate the user's spoken recitation.
+- **Speech Synthesis**: Uses the Web Speech API to read aloud the text to assist users in learning the correct pronunciation.
+- **Phased Learning Approach**: 
+  - Users first practice reciting the Shahada in their native language.
+  - After successfully completing this phase, they proceed to recite in Latinized Arabic.
+- **Retry Mechanism**: Allows users to retry recitation if their spoken input is incorrect.
+- **Transition Phase**: Moves users from their native language to Latinized Arabic upon successful completion.
+
+## Technologies Used
+
+- **React**: A JavaScript library for building user interfaces. We use React to manage the state of our application and render UI components.
+- **Lottie**: A library for rendering animations. We use Lottie to provide engaging animations that enhance the user experience.
+- **Web Speech API**: Provides speech recognition and synthesis capabilities.
+  - **SpeechRecognition**: Captures and converts spoken words into text.
+  - **SpeechSynthesis**: Reads aloud text to help users practice pronunciation.
+
+## Project Structure
+
+1. **App Component**: The main component that controls the flow of the application.
+2. **Language Selection Component**: Allows users to select their preferred language for recitation.
+3. **ShahadaTeaching Component**: Manages the learning phases and integrates speech recognition and synthesis.
+   - **Phases**:
+     - **Language Phase**: Users recite the Shahada in their native language.
+     - **Transition Phase**: After completing the native language phase, users are prompted to proceed to Latinized Arabic.
+     - **Arabic Phase**: Users recite the Shahada in Latinized Arabic.
+
+## Installation and Setup
+
+1. **Clone the Repository**:
+
+   ```bash
+   git clone https://github.com/yourusername/shahada-teaching-app.git
+   cd shahada-teaching-app
